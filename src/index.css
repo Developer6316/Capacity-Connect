@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #020617;
+    color: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Elegant Dark scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+/* ========================================================================= */
+/* Holographic Gold Foil Effect for Certificate Border                       */
+/* ========================================================================= */
+
+@keyframes holoGoldFoilSheen {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45)) brightness(1);
+  }
+  25% {
+    background-position: 50% 100%;
+    filter: drop-shadow(0 0 22px rgba(251, 191, 36, 0.8)) brightness(1.25) hue-rotate(12deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 14px rgba(234, 179, 8, 0.6)) brightness(1.05) hue-rotate(-8deg);
+  }
+  75% {
+    background-position: 50% 0%;
+    filter: drop-shadow(0 0 24px rgba(250, 204, 21, 0.85)) brightness(1.3) hue-rotate(15deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45)) brightness(1);
+  }
+}
+
+@keyframes holoBeamSweep {
+  0% {
+    transform: translateX(-160%) skewX(-30deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(360%) skewX(-30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes goldFoilSparkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+/* Holographic gold foil outer border container */
+.holo-gold-foil-border-container {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 4px;
+  background: linear-gradient(
+    135deg,
+    #bf953f 0%,
+    #fcf6ba 12%,
+    #b38728 25%,
+    #fbf5b7 38%,
+    #d4af37 50%,
+    #67e8f9 58%,
+    #f472b6 65%,
+    #fbf5b7 75%,
+    #aa771c 88%,
+    #fcf6ba 95%,
+    #bf953f 100%
+  );
+  background-size: 300% 300%;
+  animation: holoGoldFoilSheen 7s ease-in-out infinite;
+  box-shadow: 
+    0 0 30px rgba(245, 158, 11, 0.35),
+    0 0 60px rgba(217, 119, 6, 0.2),
+    inset 0 0 18px rgba(251, 191, 36, 0.35);
+}
+
+/* Dual inner border line with embossed gold */
+.holo-gold-inner-border {
+  border: 2px solid transparent;
+  background-image: linear-gradient(to bottom, #020617, #0b1120, #020617), 
+                    linear-gradient(135deg, #fef08a, #ca8a04, #fef9c3, #eab308, #67e8f9, #fde047);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* High-speed specular light glint sweep across border upon opening */
+.holo-foil-opening-sweep {
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.holo-foil-opening-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(254, 240, 138, 0.6) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(103, 232, 249, 0.7) 55%,
+    rgba(244, 114, 182, 0.4) 65%,
+    transparent 100%
+  );
+  animation: holoBeamSweep 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s 2 forwards;
+}
+
+.holo-sparkle {
+  animation: goldFoilSparkle 3s ease-in-out infinite;
+}

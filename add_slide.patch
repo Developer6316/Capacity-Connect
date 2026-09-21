@@ -1,0 +1,46 @@
+--- scripts/generate_presentation.js
++++ scripts/generate_presentation.js
+@@ -1080,6 +1080,41 @@
+     });
+ 
+     /* -------------------------------------------------------------------------
++     * SLIDE 10: Data & Analytics
++     * ------------------------------------------------------------------------- */
++    {
++      const slide = pres.addSlide();
++      applySlideChrome(slide, 'Empirical Efficacy: AI-Assisted vs Traditional', 'Data & Analytics');
++
++      slide.addText('Student Retention over 6 Months (%)', { x: 0.8, y: 1.5, w: 5, h: 0.3, fontSize: 12, color: TEXT_WHITE, bold: true });
++      
++      let lineChartData = [
++        { name: 'Capacity Connect AI', labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'], values: [95, 92, 89, 87, 85, 85] },
++        { name: 'Traditional Methods', labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'], values: [80, 65, 55, 45, 40, 35] }
++      ];
++      
++      slide.addChart(pres.ChartType.line, lineChartData, {
++        x: 0.8, y: 1.8, w: 5.5, h: 4.5,
++        chartColors: ['06B6D4', '94A3B8'],
++        showLegend: true,
++        legendPos: 'b',
++        valAxisMinVal: 0,
++        valAxisMaxVal: 100,
++      });
++
++      slide.addText('AP Score Distribution (Target vs Actual)', { x: 6.8, y: 1.5, w: 5, h: 0.3, fontSize: 12, color: TEXT_WHITE, bold: true });
++      
++      let barChartData = [
++        { name: 'Pre-AI Cohort', labels: ['Score 1', 'Score 2', 'Score 3', 'Score 4', 'Score 5'], values: [10, 20, 35, 25, 10] },
++        { name: 'Capacity Connect Cohort', labels: ['Score 1', 'Score 2', 'Score 3', 'Score 4', 'Score 5'], values: [2, 8, 20, 40, 30] }
++      ];
++      
++      slide.addChart(pres.ChartType.bar, barChartData, {
++        x: 6.8, y: 1.8, w: 5.5, h: 4.5,
++        chartColors: ['334155', '6366F1'],
++        showLegend: true, legendPos: 'b', barDir: 'col',
++      });
++    }
++
++    /* -------------------------------------------------------------------------
+      * SLIDE 11: Projected Impact
+      * ------------------------------------------------------------------------- */
+     {

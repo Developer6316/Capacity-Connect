@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="indigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <!-- Outer subtle glowing orbital ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#4f46e5" stroke-width="6" stroke-dasharray="16 12" opacity="0.4" />
+  <!-- Academic Graduation Cap / Atom Core Geometric Symbol -->
+  <polygon points="256,120 396,190 256,260 116,190" fill="url(#indigoGrad)" />
+  <polygon points="116,190 256,260 256,310 116,240" fill="#4338ca" opacity="0.8" />
+  <polygon points="396,190 256,260 256,310 396,240" fill="#6d28d9" opacity="0.8" />
+  <!-- Tassel -->
+  <path d="M 380,200 L 404,260 L 396,330" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="396" cy="340" r="10" fill="#38bdf8" />
+  <!-- Open Textbook below -->
+  <path d="M 140,320 Q 256,340 256,380 Q 256,340 372,320 L 372,390 Q 256,410 256,430 Q 256,410 140,390 Z" fill="#1e293b" stroke="url(#cyanGrad)" stroke-width="6" />
+  <!-- Sparkling Spark / AI Node -->
+  <path d="M 256,70 Q 256,95 275,95 Q 256,95 256,120 Q 256,95 237,95 Q 256,95 256,70 Z" fill="#38bdf8" />
+</svg>
