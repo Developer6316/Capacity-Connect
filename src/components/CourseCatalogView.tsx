@@ -20,7 +20,8 @@ import {
   Bookmark,
   Globe2,
   Building2,
-  GraduationCap
+  GraduationCap,
+  Plus
 } from 'lucide-react';
 import { TrainingCourse, CourseModuleItem } from '../types';
 
@@ -147,61 +148,62 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-indigo-900/50 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex items-center gap-2 text-xs font-mono text-indigo-400">
             <BookOpen className="w-3.5 h-3.5" />
-            Comprehensive Capacity Building Curriculum
+            <span>Digital Curriculum & National Frameworks</span>
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-            Digital Course Catalog & National Benchmarks
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
+            Course Catalog & Skill Benchmarks
           </h1>
-          <p className="text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
             Explore programs across Core Computer Science, India Stack (UPI, Aadhaar, ONDC), Data Protection, and access the official NPTEL/SWAYAM technical curriculum.
           </p>
         </div>
 
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-4 shrink-0">
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-white">{courses.length}</span>
-            <p className="text-[10px] text-slate-300 uppercase tracking-wider font-semibold">Internal Courses</p>
+        {/* Unboxed Stats */}
+        <div className="flex items-center gap-4 sm:gap-6 border-t md:border-t-0 md:border-l border-slate-800 pt-3 md:pt-0 md:pl-6 shrink-0 text-xs">
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-white block">{courses.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Curricula</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-emerald-400">
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-400 block">
               {courses.filter(c => c.enrolled).length}
             </span>
-            <p className="text-[10px] text-slate-300 uppercase tracking-wider font-semibold">My Enrolled</p>
+            <span className="text-slate-400 font-mono text-[11px]">Enrolled</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-amber-400">
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-amber-400 block">
               {nptelMockCourses.length}+
             </span>
-            <p className="text-[10px] text-slate-300 uppercase tracking-wider font-semibold">NPTEL Links</p>
+            <span className="text-slate-400 font-mono text-[11px]">NPTEL Tracks</span>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-slate-200">
+      <div className="border-b border-slate-800">
         <div className="flex items-center gap-6">
           <button
             onClick={() => setActiveTab('internal')}
-            className={`pb-3 text-sm font-bold border-b-2 transition-colors ${
+            className={`pb-3 text-xs sm:text-sm font-semibold border-b-2 transition-colors ${
               activeTab === 'internal' 
-                ? 'border-indigo-600 text-indigo-600' 
-                : 'border-transparent text-slate-500 hover:text-slate-800'
+                ? 'border-indigo-500 text-indigo-400' 
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             Internal Curricula
           </button>
           <button
             onClick={() => setActiveTab('nptel')}
-            className={`pb-3 text-sm font-bold border-b-2 transition-colors flex items-center gap-1.5 ${
+            className={`pb-3 text-xs sm:text-sm font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
               activeTab === 'nptel' 
-                ? 'border-orange-600 text-orange-600' 
-                : 'border-transparent text-slate-500 hover:text-slate-800'
+                ? 'border-amber-500 text-amber-400' 
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <GraduationCap className="w-4 h-4" />
@@ -216,22 +218,22 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
           <div className="space-y-3">
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <div className="relative flex-1 max-w-md">
-                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by title, code (e.g. CS-101), or skill..."
-                  className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full pl-10 pr-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-slate-500">Level:</span>
+                <span className="text-xs font-mono text-slate-400">Level:</span>
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
+                  className="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs font-medium text-slate-200 focus:outline-none focus:border-indigo-500"
                 >
                   <option value="all">All Levels</option>
                   <option value="Beginner">Beginner</option>
@@ -241,16 +243,16 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
               </div>
             </div>
 
-            {/* Category Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            {/* Category Filter */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
               {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
                     selectedCategory === cat
                       ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
+                      : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-850'
                   }`}
                 >
                   {cat === 'all' ? 'All Curricula' : cat}
@@ -260,21 +262,21 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
           </div>
 
           {/* Courses Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {filteredCourses.map(course => (
               <div
                 key={course.id}
-                className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm hover:border-slate-700 transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Header Gradient / Banner */}
                   <div className={`h-24 bg-gradient-to-r ${course.thumbnailGradient || 'from-indigo-600 to-slate-800'} p-4 flex flex-col justify-between text-white relative`}>
                     <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-black/30 backdrop-blur-sm uppercase tracking-wider">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-black/30 backdrop-blur-sm uppercase tracking-wider font-mono">
                         {course.code}
                       </span>
                       {course.regionBadge && (
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-400 text-slate-900">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-400 text-slate-900 font-mono">
                           {course.regionBadge}
                         </span>
                       )}
@@ -289,36 +291,36 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                   <div className="p-4 space-y-3">
                     <h3 
                       onClick={() => setActiveCourseModal(course)}
-                      className="font-bold text-slate-900 text-sm hover:text-indigo-600 cursor-pointer line-clamp-2 transition-colors leading-snug"
+                      className="font-bold text-white text-sm hover:text-indigo-400 cursor-pointer line-clamp-2 transition-colors leading-snug"
                     >
                       {course.title}
                     </h3>
-                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
                       {course.description}
                     </p>
 
                     {/* Target Skills Tags */}
                     <div className="flex flex-wrap gap-1">
                       {course.targetSkills.slice(0, 3).map(skill => (
-                        <span key={skill} className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-medium">
+                        <span key={skill} className="px-2 py-0.5 bg-slate-950 border border-slate-800 text-slate-300 rounded text-[10px] font-mono">
                           {skill}
                         </span>
                       ))}
                       {course.targetSkills.length > 3 && (
-                        <span className="px-1.5 py-0.5 text-[10px] text-slate-400">
+                        <span className="px-1.5 py-0.5 text-[10px] text-slate-500 font-mono">
                           +{course.targetSkills.length - 3} more
                         </span>
                       )}
                     </div>
 
                     {/* Instructor & Duration */}
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
                       <div className="flex items-center gap-1.5 truncate">
-                        <User className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <User className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                         <span className="truncate">{course.instructor}</span>
                       </div>
-                      <div className="flex items-center gap-1 shrink-0">
-                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                      <div className="flex items-center gap-1 shrink-0 font-mono">
+                        <Clock className="w-3.5 h-3.5 text-slate-500" />
                         <span>{course.durationHours} hrs</span>
                       </div>
                     </div>
@@ -327,12 +329,12 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                     {course.enrolled && (
                       <div className="pt-1 space-y-1">
                         <div className="flex items-center justify-between text-[11px]">
-                          <span className="text-indigo-700 font-semibold">Trainee Progress</span>
-                          <span className="font-bold text-slate-800">{course.progress}%</span>
+                          <span className="text-indigo-400 font-medium">Trainee Progress</span>
+                          <span className="font-bold font-mono text-white">{course.progress}%</span>
                         </div>
-                        <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                           <div
-                            className="bg-indigo-600 h-full rounded-full transition-all duration-500"
+                            className="bg-indigo-500 h-full rounded-full transition-all duration-500"
                             style={{ width: `${course.progress}%` }}
                           />
                         </div>
@@ -342,10 +344,10 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                 </div>
 
                 {/* Footer Action */}
-                <div className="p-4 pt-0 border-t border-slate-50 flex items-center justify-between gap-2 mt-2">
+                <div className="p-4 pt-0 border-t border-slate-800/80 flex items-center justify-between gap-2 mt-2">
                   <button
                     onClick={() => setActiveCourseModal(course)}
-                    className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+                    className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
                   >
                     Syllabus & Modules
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -355,13 +357,13 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                     course.progress === 100 ? (
                       <button
                         onClick={() => onOpenCertificateModal(course)}
-                        className="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-xs font-semibold shadow-sm transition-all flex items-center gap-1"
+                        className="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg text-xs font-bold transition-colors flex items-center gap-1"
                       >
                         <Award className="w-3.5 h-3.5" />
                         Certificate
                       </button>
                     ) : (
-                      <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                      <span className="text-xs font-mono text-emerald-400 font-semibold flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         Enrolled
                       </span>
@@ -369,9 +371,10 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                   ) : (
                     <button
                       onClick={() => onEnroll(course.id)}
-                      className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm transition-all"
+                      className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition-colors flex items-center gap-1"
                     >
-                      Enroll Now
+                      <Plus className="w-3.5 h-3.5" />
+                      Enroll
                     </button>
                   )}
                 </div>
@@ -430,57 +433,57 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {nptelMockCourses.map(course => (
               <div
                 key={course.id}
-                className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+                className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm hover:border-slate-700 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className={`h-20 ${course.image} p-4 flex flex-col justify-between text-white relative`}>
                     <div className="flex items-center justify-between">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-black/30 backdrop-blur-sm uppercase tracking-wider">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-black/30 backdrop-blur-sm uppercase tracking-wider font-mono">
                         NPTEL SWAYAM
                       </span>
                     </div>
                   </div>
                   <div className="p-4 space-y-3">
-                    <h3 className="font-bold text-slate-900 text-sm leading-snug">
+                    <h3 className="font-bold text-white text-sm leading-snug">
                       {course.title}
                     </h3>
-                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
                       {course.description}
                     </p>
-                    <div className="pt-2 border-t border-slate-100 space-y-2 text-xs text-slate-600">
+                    <div className="pt-2 border-t border-slate-800 space-y-2 text-xs text-slate-400">
                       <div className="flex items-center justify-between">
-                        <span className="font-semibold text-slate-700">Institution:</span>
-                        <span>{course.institution}</span>
+                        <span className="text-slate-500">Institution:</span>
+                        <span className="text-slate-300 font-medium">{course.institution}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="font-semibold text-slate-700">Duration:</span>
-                        <span>{course.duration}</span>
+                        <span className="text-slate-500">Duration:</span>
+                        <span className="text-slate-300 font-mono">{course.duration}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="font-semibold text-slate-700">Level:</span>
-                        <span>{course.level}</span>
+                        <span className="text-slate-500">Level:</span>
+                        <span className="text-slate-300 font-medium">{course.level}</span>
                       </div>
-                      <div className="flex items-center justify-between text-orange-600">
-                        <span className="font-semibold">Enrollment Ends:</span>
+                      <div className="flex items-center justify-between text-amber-400 font-mono">
+                        <span className="text-slate-500">Enrollment Ends:</span>
                         <span>{course.enrollmentEnds}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 pt-0 border-t border-slate-50">
+                <div className="p-4 pt-0 border-t border-slate-800/80">
                   <a
                     href={course.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => onNptelEnroll(course.title)}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold shadow-sm transition-all"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-950 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold border border-slate-800 transition-colors"
                   >
-                    Enroll on SWAYAM
+                    <span>Enroll on SWAYAM</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -492,49 +495,49 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
 
       {/* Course Detail & Interactive Syllabus Modal (Internal Courses) */}
       {currentModalCourse && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white border border-slate-200 rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
             {/* Modal Header */}
-            <div className={`p-6 bg-gradient-to-r ${currentModalCourse.thumbnailGradient || 'from-indigo-900 to-slate-900'} text-white flex items-start justify-between gap-4`}>
+            <div className={`p-5 sm:p-6 bg-gradient-to-r ${currentModalCourse.thumbnailGradient || 'from-indigo-900 to-slate-900'} text-white flex items-start justify-between gap-4`}>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-white/20 uppercase tracking-wider">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-black/40 backdrop-blur-sm uppercase tracking-wider font-mono">
                     {currentModalCourse.code}
                   </span>
-                  <span className="text-xs text-indigo-200 font-medium">
-                    {currentModalCourse.category} • {currentModalCourse.level}
+                  <span className="text-xs text-indigo-200 font-mono">
+                    {currentModalCourse.category} · {currentModalCourse.level}
                   </span>
                 </div>
-                <h2 className="text-xl font-bold">{currentModalCourse.title}</h2>
+                <h2 className="text-lg sm:text-xl font-bold">{currentModalCourse.title}</h2>
                 <p className="text-xs text-slate-200">
-                  Led by {currentModalCourse.instructor} ({currentModalCourse.instructorRole}) • {currentModalCourse.organization}
+                  Led by {currentModalCourse.instructor} ({currentModalCourse.instructorRole}) · {currentModalCourse.organization}
                 </p>
               </div>
               <button
                 onClick={() => setActiveCourseModal(null)}
-                className="p-1.5 text-white/80 hover:text-white hover:bg-white/10 rounded-lg"
+                className="p-1.5 text-white/80 hover:text-white hover:bg-white/10 rounded-lg shrink-0 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 overflow-y-auto space-y-6 text-slate-800 text-xs leading-relaxed">
+            <div className="p-5 sm:p-6 overflow-y-auto space-y-5 text-slate-300 text-xs leading-relaxed">
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-1">
-                  Program Overview & Learning Outcomes:
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">
+                  Program Overview & Learning Outcomes
                 </h4>
-                <p className="text-slate-600">{currentModalCourse.description}</p>
+                <p className="text-slate-300">{currentModalCourse.description}</p>
               </div>
 
               {/* Target Skills */}
               <div>
-                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">
-                  Competencies Acquired:
+                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">
+                  Competencies Acquired
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
                   {currentModalCourse.targetSkills.map(skill => (
-                    <span key={skill} className="px-2.5 py-1 bg-indigo-50 border border-indigo-100 text-indigo-700 rounded-md text-xs font-semibold">
+                    <span key={skill} className="px-2 py-0.5 bg-slate-950 border border-slate-800 text-indigo-300 rounded text-xs font-mono">
                       {skill}
                     </span>
                   ))}
@@ -544,11 +547,11 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
               {/* Interactive Modules Checklist */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                    Modules & Interactive Syllabus ({currentModalCourse.modules.length}):
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400">
+                    Modules & Interactive Syllabus ({currentModalCourse.modules.length})
                   </h4>
                   {currentModalCourse.enrolled && (
-                    <span className="text-xs font-semibold text-indigo-600">
+                    <span className="text-xs font-mono text-indigo-400">
                       Progress: {currentModalCourse.progress}% Completed
                     </span>
                   )}
@@ -559,7 +562,7 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                     <div
                       key={mod.id}
                       className={`p-3 rounded-xl border flex items-center justify-between gap-3 transition-colors ${
-                        mod.completed ? 'bg-emerald-50/60 border-emerald-200' : 'bg-slate-50 border-slate-200'
+                        mod.completed ? 'bg-emerald-950/20 border-emerald-800/40 text-emerald-200' : 'bg-slate-950 border-slate-800 text-slate-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -568,31 +571,31 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                           onClick={() => onToggleModuleCompletion(currentModalCourse.id, mod.id)}
                           className={`w-5 h-5 rounded flex items-center justify-center border transition-all ${
                             mod.completed 
-                              ? 'bg-emerald-600 border-emerald-600 text-white' 
-                              : 'border-slate-300 bg-white hover:border-indigo-500'
+                              ? 'bg-emerald-500 border-emerald-500 text-slate-950' 
+                              : 'border-slate-700 bg-slate-900 hover:border-indigo-500'
                           } ${!currentModalCourse.enrolled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
                         >
-                          {mod.completed && <Check className="w-3.5 h-3.5" />}
+                          {mod.completed && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </button>
 
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-slate-900">{mod.title}</span>
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 uppercase font-semibold">
+                            <span className="text-xs font-bold text-white">{mod.title}</span>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400 uppercase font-mono">
                               {mod.type.replace('_', ' ')}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-400">Duration: {mod.duration}</p>
+                          <p className="text-[11px] text-slate-500 font-mono">Duration: {mod.duration}</p>
                         </div>
                       </div>
 
                       <div>
                         {mod.completed ? (
-                          <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+                          <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1">
                             <CheckCircle2 className="w-3.5 h-3.5" /> Completed
                           </span>
                         ) : (
-                          <span className="text-[11px] text-slate-400">
+                          <span className="text-[11px] text-slate-500 font-mono">
                             {currentModalCourse.enrolled ? 'Mark Complete' : 'Enroll to Access'}
                           </span>
                         )}
@@ -604,24 +607,24 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+            <div className="p-4 border-t border-slate-800 bg-slate-950 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <div>
                 {!currentModalCourse.enrolled && (
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-slate-400">
                     Free institutional enrollment for all verified trainees.
                   </span>
                 )}
                 {currentModalCourse.enrolled && currentModalCourse.progress === 100 && (
-                  <span className="text-xs text-emerald-600 font-semibold">
+                  <span className="text-xs font-mono text-emerald-400">
                     All modules completed! Certified ready for issue.
                   </span>
                 )}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 justify-end">
                 <button
                   onClick={() => setActiveCourseModal(null)}
-                  className="px-4 py-2 border border-slate-300 rounded-xl text-xs font-semibold text-slate-700 hover:bg-white"
+                  className="px-4 py-2 border border-slate-800 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-colors"
                 >
                   Close
                 </button>
@@ -633,13 +636,13 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                         onOpenCertificateModal(currentModalCourse);
                         setActiveCourseModal(null);
                       }}
-                      className="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-semibold shadow-md flex items-center gap-1.5"
+                      className="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5"
                     >
                       <Award className="w-4 h-4" />
                       View Certificate
                     </button>
                   ) : (
-                    <span className="px-4 py-2 bg-emerald-50 text-emerald-800 rounded-xl text-xs font-bold border border-emerald-200">
+                    <span className="px-3.5 py-1.5 bg-indigo-950/40 text-indigo-300 rounded-lg text-xs font-mono border border-indigo-800/50">
                       Enrolled ({currentModalCourse.progress}%)
                     </span>
                   )
@@ -648,7 +651,7 @@ export const CourseCatalogView: React.FC<CourseCatalogViewProps> = ({
                     onClick={() => {
                       onEnroll(currentModalCourse.id);
                     }}
-                    className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold shadow-md"
+                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition-colors"
                   >
                     Enroll in Course
                   </button>

@@ -99,77 +99,68 @@ export const PresentationModal: React.FC<PresentationModalProps> = ({
 
       {/* Main Glass Deck Container */}
       <div
-        className={`relative w-full flex flex-col bg-slate-900/60 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300 ${
+        className={`relative w-full flex flex-col bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300 ${
           isFullscreen
             ? 'fixed inset-0 rounded-none border-none h-screen max-w-none'
-            : 'max-w-6xl max-h-[92vh] h-[820px]'
+            : 'max-w-6xl max-h-[95vh] sm:max-h-[92vh] h-full sm:h-[820px]'
         }`}
       >
         {/* Frosted Glass Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02] backdrop-blur-md z-20">
-          <div className="flex items-center space-x-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-white/[0.02] backdrop-blur-md z-20 gap-2">
+          <div className="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
               <div className="w-full h-full bg-slate-950/70 rounded-[10px] flex items-center justify-center">
                 <Presentation className="w-4 h-4 text-cyan-300" />
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-bold text-white tracking-wide">{portalName}</span>
-                <span className="px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                  Glass Deck
+                <span className="text-xs sm:text-sm font-bold text-white tracking-wide truncate">{portalName}</span>
+                <span className="hidden sm:inline-block text-[10px] font-mono tracking-wider uppercase text-indigo-400">
+                  Slide {currentSlide}/{totalSlides}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 truncate max-w-xs sm:max-w-md">
-                Slide {currentSlide} of {totalSlides}: {slideTitles[currentSlide - 1]}
+              <p className="text-[11px] sm:text-xs text-slate-400 truncate max-w-[160px] sm:max-w-xs md:max-w-md">
+                {slideTitles[currentSlide - 1]}
               </p>
             </div>
           </div>
 
           {/* Quick Deck Controls */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
             <button
               onClick={() => downloadHackathonPitchPDF({ projectName: portalName })}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/25 to-rose-500/25 hover:from-amber-500/35 hover:to-rose-500/35 text-amber-200 border border-amber-500/40 text-xs font-semibold transition-all shadow-sm shadow-amber-500/10"
+              className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-medium transition-all"
               title="Download 3-Minute Hackathon Pitch Script & Judges Quick-Sheet (PDF)"
             >
               <Timer className="w-3.5 h-3.5 text-amber-400" />
-              <span>3-Min Pitch PDF</span>
+              <span className="hidden sm:inline">3-Min Pitch PDF</span>
+              <span className="sm:hidden">PDF</span>
             </button>
 
             <a
               href="/Capacity_Connect_Presentation.pptx"
               download="Capacity_Connect_Presentation.pptx"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 border border-white/10 text-xs font-medium transition-all shadow-sm"
+              className="hidden md:flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 border border-white/10 text-xs font-medium transition-all"
               title="Download 6-Slide PPTX Deck"
             >
               <Download className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">Download PPTX</span>
+              <span>PPTX</span>
             </a>
 
             <a
               href="/Capacity_Connect_Presentation_Content.pdf"
               download="Capacity_Connect_Presentation_Content.pdf"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-200 border border-indigo-500/30 text-xs font-medium transition-all shadow-sm"
+              className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-200 border border-indigo-500/30 text-xs font-medium transition-all"
               title="Download 7-Page PDF Presentation & Speaker Notes Guide"
             >
               <FileText className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="hidden sm:inline">Presentation PDF</span>
-            </a>
-
-            <a
-              href="/Capacity_Connect_Explanation_Pros_Cons.pdf"
-              download="Capacity_Connect_Explanation_Pros_Cons.pdf"
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 border border-emerald-500/30 text-xs font-medium transition-all shadow-sm"
-              title="Download 2-Page Executive Explanation & Balanced Pros/Cons PDF"
-            >
-              <FileText className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="hidden sm:inline">Pros & Cons PDF</span>
+              <span>Full Guide</span>
             </a>
 
             <button
               onClick={() => setIsFullscreen(!isFullscreen)}
-              className="p-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] text-slate-300 border border-white/10 transition-colors"
+              className="hidden sm:inline-flex p-1.5 sm:p-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] text-slate-300 border border-white/10 transition-colors"
               title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -177,7 +168,7 @@ export const PresentationModal: React.FC<PresentationModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-white/[0.04] hover:bg-rose-500/20 text-slate-300 hover:text-rose-200 border border-white/10 hover:border-rose-500/30 transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg bg-white/[0.04] hover:bg-rose-500/20 text-slate-300 hover:text-rose-200 border border-white/10 hover:border-rose-500/30 transition-colors"
               title="Close Presentation"
             >
               <X className="w-4 h-4" />

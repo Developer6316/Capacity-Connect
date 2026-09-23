@@ -111,26 +111,26 @@ export const KnowledgeRepository: React.FC<KnowledgeRepositoryProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 border border-slate-700/60 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex items-center gap-2 text-xs font-mono text-indigo-400">
             <BookOpen className="w-3.5 h-3.5" />
-            Centralized Knowledge Repository & Peer Wiki
+            <span>Centralized Knowledge Repository & Peer Wiki</span>
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-            Peer-to-Peer Knowledge Sharing & Documentation
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
+            Peer Knowledge Sharing & Documentation
           </h1>
-          <p className="text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
             Eliminate organizational silos. Access internal engineering runbooks, architecture RFCs, certification summaries, and standard operating procedures maintained by peers and trainers.
           </p>
         </div>
 
         <button
           onClick={() => setIsCreateModalOpen(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-md transition-all shrink-0 active:scale-95"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors shrink-0"
         >
           <Plus className="w-4 h-4" />
-          Share Knowledge / Document
+          Share Documentation
         </button>
       </div>
 

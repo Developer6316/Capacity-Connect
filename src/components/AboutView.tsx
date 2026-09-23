@@ -35,54 +35,54 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateToTab, onOpenPre
         <div className="absolute top-0 right-0 -mt-8 -mr-8 w-72 h-72 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 space-y-6 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Next-Generation High School STEM Platform</span>
+        <div className="relative z-10 space-y-5 max-w-3xl">
+          <div className="flex items-center gap-2 text-xs font-mono text-indigo-400">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Digital Learning & Governance Ecosystem</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">Capacity Connect</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-cyan-300 to-emerald-300">Capacity Connect</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Capacity Connect is a centralized, digital ecosystem for organizational training, competency development, and knowledge sharing. Designed to bridge cognitive gaps for modern learners, trainees, and engineers through structured curricula, adaptive skill-gap identification, and peer documentation.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-2.5 pt-2">
             <button
               type="button"
               onClick={() => downloadHackathonPitchPDF()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white text-xs font-bold shadow-lg shadow-amber-500/25 transition-all active:scale-95 border border-amber-300/30"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-colors shadow-sm"
               title="Download 3-Minute Hackathon Pitch Script & Judges Quick-Sheet (PDF)"
             >
-              <Timer className="w-4 h-4 text-white" />
-              <span>Download 3-Min Hackathon PDF</span>
+              <Timer className="w-4 h-4 text-slate-950" />
+              <span>3-Min Pitch PDF</span>
             </button>
 
             {onOpenPresentationModal && (
               <button
                 type="button"
                 onClick={onOpenPresentationModal}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 border border-indigo-400/30"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors shadow-sm"
               >
-                <Presentation className="w-4 h-4 text-cyan-200" />
-                <span>Open 6-Slide Glass Deck</span>
+                <Presentation className="w-4 h-4 text-indigo-200" />
+                <span>Open Presentation Deck</span>
               </button>
             )}
 
             <a
               href="/Capacity_Connect_Presentation.pptx"
               download="Capacity_Connect_Presentation.pptx"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 text-xs font-semibold transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 text-xs font-medium transition-colors"
             >
-              <Presentation className="w-4 h-4 text-indigo-400" />
-              <span>Download PPTX</span>
+              <Presentation className="w-4 h-4 text-cyan-400" />
+              <span>PPTX</span>
             </a>
 
             <button
               onClick={() => onNavigateToTab('paths')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-semibold transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-850 text-slate-300 border border-slate-800 text-xs font-medium transition-colors"
             >
               <span>Explore Study Paths</span>
               <ArrowRight className="w-3.5 h-3.5 text-slate-400" />

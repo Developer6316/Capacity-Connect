@@ -169,47 +169,47 @@ export const TrainerPortal: React.FC<TrainerPortalProps> = ({
   return (
     <div className="space-y-6">
       {/* Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-indigo-800/40 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex items-center gap-2 text-xs font-mono text-indigo-400">
             <GraduationCap className="w-3.5 h-3.5" />
-            Trainer & Faculty Operations Portal
+            <span>Trainer & Faculty Operations Portal</span>
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
             Curriculum Authoring, Milestones & Evaluation
           </h1>
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
             Welcome, <strong>{currentUser.name}</strong>. Create training programs, upload materials, schedule cohorts, and evaluate trainee submissions against institutional competency benchmarks.
           </p>
         </div>
 
-        {/* Quick Stats Pill */}
-        <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4 shrink-0">
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-amber-400">{pendingSubmissions.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Pending Review</p>
+        {/* Unboxed Quick Stats */}
+        <div className="flex items-center gap-4 sm:gap-6 border-t md:border-t-0 md:border-l border-slate-800 pt-3 md:pt-0 md:pl-6 shrink-0 text-xs">
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-amber-400 block">{pendingSubmissions.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Pending Review</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-emerald-400">{gradedSubmissions.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Graded</p>
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-400 block">{gradedSubmissions.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Graded</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-indigo-400">{courses.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Courses</p>
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-indigo-400 block">{courses.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Active Courses</span>
           </div>
         </div>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+      <div className="flex items-center gap-2 border-b border-slate-800 pb-2 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('evaluate')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
             activeTab === 'evaluate'
               ? 'bg-indigo-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Award className="w-4 h-4" />
@@ -218,38 +218,38 @@ export const TrainerPortal: React.FC<TrainerPortalProps> = ({
 
         <button
           onClick={() => setActiveTab('create_course')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
             activeTab === 'create_course'
               ? 'bg-indigo-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <PlusCircle className="w-4 h-4" />
-          Create Course Module
+          Author New Course
         </button>
 
         <button
           onClick={() => setActiveTab('materials')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
             activeTab === 'materials'
               ? 'bg-indigo-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <UploadCloud className="w-4 h-4" />
-          Upload Training Materials
+          Upload Materials & Docs
         </button>
 
         <button
           onClick={() => setActiveTab('schedule')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors whitespace-nowrap ${
             activeTab === 'schedule'
               ? 'bg-indigo-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Calendar className="w-4 h-4" />
-          Schedule Milestones
+          Milestones & Cohorts
         </button>
       </div>
 

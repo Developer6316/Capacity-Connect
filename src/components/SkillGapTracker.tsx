@@ -101,36 +101,35 @@ export const SkillGapTracker: React.FC<SkillGapTrackerProps> = ({
   return (
     <div className="space-y-6">
       {/* Header & Motto Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-indigo-900/50 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
-        <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-sm relative overflow-hidden">
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-xs font-semibold tracking-wide uppercase">
+            <div className="flex items-center gap-2 text-xs font-mono text-indigo-400">
               <Target className="w-3.5 h-3.5" />
-              Dynamic Skill Gap Identification & Mapping Engine
+              <span>Skill Gap Diagnostic & Mapping Engine</span>
             </div>
-            <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-white">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white">
               Target Role: <span className="text-indigo-400">{targetJobRole || 'Senior Cloud & Systems Architect'}</span>
             </h1>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
               Our automated competency diagnostic maps your current proficiency against national and enterprise role benchmarks.
               Identified skill gaps directly pair with verified modules to accelerate your training progression.
             </p>
           </div>
 
           {/* Readiness Dial Card */}
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 flex items-center gap-4 shrink-0">
-            <div className="relative w-20 h-20 flex items-center justify-center">
+          <div className="bg-slate-950/60 border border-slate-800 rounded-xl p-4 flex items-center gap-4 shrink-0">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center shrink-0">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                 <path
-                  className="text-slate-700"
+                  className="text-slate-800"
                   strokeWidth="3.5"
                   stroke="currentColor"
                   fill="none"
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 />
                 <path
-                  className="text-indigo-400 transition-all duration-1000 ease-out"
+                  className="text-indigo-500 transition-all duration-1000 ease-out"
                   strokeDasharray={`${organizationalReadiness}, 100`}
                   strokeWidth="3.5"
                   strokeLinecap="round"
@@ -140,37 +139,37 @@ export const SkillGapTracker: React.FC<SkillGapTrackerProps> = ({
                 />
               </svg>
               <div className="absolute flex flex-col items-center">
-                <span className="text-xl font-bold text-white">{organizationalReadiness}%</span>
-                <span className="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Readiness</span>
+                <span className="text-lg sm:text-xl font-bold text-white">{organizationalReadiness}%</span>
+                <span className="text-[9px] text-slate-400 font-mono">Fit</span>
               </div>
             </div>
             <div className="space-y-1 text-xs">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-rose-500" />
-                <span className="text-slate-300 font-medium">Critical Gaps: <strong className="text-white">{criticalGapsCount}</strong></span>
+                <span className="text-slate-300">Critical Gaps: <strong className="text-white">{criticalGapsCount}</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span className="text-slate-300 font-medium">Moderate: <strong className="text-white">{moderateGapsCount}</strong></span>
+                <span className="text-slate-300">Moderate: <strong className="text-white">{moderateGapsCount}</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="text-slate-300 font-medium">Proficient: <strong className="text-white">{proficientCount}</strong></span>
+                <span className="text-slate-300">Proficient: <strong className="text-white">{proficientCount}</strong></span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Action bar */}
-        <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-5 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-xs text-slate-400">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Aligned with National Occupational Standards (NOS) & Enterprise Competency Matrix</span>
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>Aligned with National Occupational Standards (NOS)</span>
           </div>
           <button
             onClick={handleRunAiDiagnostic}
             disabled={isDiagnosticRunning}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition-all shadow-md active:scale-95 disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition-colors disabled:opacity-50"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isDiagnosticRunning ? 'animate-spin' : ''}`} />
             {isDiagnosticRunning ? 'Calibrating Competency Baseline...' : 'Re-Run Diagnostic Assessment'}

@@ -207,45 +207,45 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
   return (
     <div className="space-y-6">
       {/* Admin Header Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-indigo-950 border border-indigo-900/60 rounded-2xl p-6 text-white shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-400/30 rounded-full text-amber-300 text-xs font-semibold uppercase tracking-wider">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 sm:gap-6">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
             <ShieldCheck className="w-3.5 h-3.5" />
-            Executive Admin & Governance Console
+            <span>Executive Admin & Governance Console</span>
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold tracking-tight">
-            Portal Customization & Centralized Control
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
+            Portal Customization & Governance
           </h1>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            Configure every aspect of the LMS: branding, organizational motto, resource repositories, Gemini API keys, data storage backups, user roles, and compliance logs.
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Configure branding, organizational motto, resource repositories, Gemini API keys, data storage backups, user roles, and compliance logs.
           </p>
         </div>
 
-        {/* Quick Governance Summary */}
-        <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-4 shrink-0">
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-indigo-400">{allUsers.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Total Users</p>
+        {/* Unboxed Governance Summary */}
+        <div className="flex items-center gap-4 sm:gap-6 border-t md:border-t-0 md:border-l border-slate-800 pt-3 md:pt-0 md:pl-6 shrink-0 text-xs">
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-indigo-400 block">{allUsers.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Total Users</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-emerald-400">{settings.customResources.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Resources</p>
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-400 block">{settings.customResources.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Resources</span>
           </div>
-          <div className="h-8 w-px bg-white/15" />
-          <div className="text-center px-2">
-            <span className="text-2xl font-extrabold text-amber-400">{auditLogs.length}</span>
-            <p className="text-[11px] text-slate-300 uppercase tracking-wider font-semibold">Audit Logs</p>
+          <span className="text-slate-700">/</span>
+          <div>
+            <span className="text-xl sm:text-2xl font-bold text-amber-400 block">{auditLogs.length}</span>
+            <span className="text-slate-400 font-mono text-[11px]">Audit Logs</span>
           </div>
         </div>
       </div>
 
       {/* Step-by-Step Navigation Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto border-b border-slate-200 pb-2">
+      <div className="flex items-center gap-2 overflow-x-auto border-b border-slate-800 pb-2 scrollbar-none">
         <button
           onClick={() => setActiveTab('branding')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'branding' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'branding' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Palette className="w-4 h-4" />
@@ -254,48 +254,48 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
 
         <button
           onClick={() => setActiveTab('resources')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'resources' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'resources' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <FolderPlus className="w-4 h-4" />
-          2. Add Resources ({settings.customResources.length})
+          2. Resources ({settings.customResources.length})
         </button>
 
         <button
           onClick={() => setActiveTab('api_key')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'api_key' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'api_key' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Key className="w-4 h-4" />
-          3. API Key & AI Engine
+          3. AI Engine
         </button>
 
         <button
           onClick={() => setActiveTab('storage')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'storage' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'storage' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Database className="w-4 h-4" />
-          4. Storing Data & Backups
+          4. Data & Backups
         </button>
 
         <button
           onClick={() => setActiveTab('users')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'users' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'users' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <Users className="w-4 h-4" />
-          5. User Roles & Depts
+          5. User Roles
         </button>
 
         <button
           onClick={() => setActiveTab('compliance')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
-            activeTab === 'compliance' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'
+          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+            activeTab === 'compliance' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
           }`}
         >
           <FileText className="w-4 h-4" />
